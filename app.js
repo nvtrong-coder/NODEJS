@@ -19,6 +19,10 @@ app.set('view engine', 'ejs');
 const userRoutes = require('./routes/userRoutes');
 app.use('/users', userRoutes);
 
+app.get('/', (req, res) => {
+  res.send("Trang chủ NodeJS + Express!");
+});
+
 app.listen(PORT, () => {
   console.log(`Server chạy trên cổng ${PORT}`);
 });
