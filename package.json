@@ -3,26 +3,24 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-  "clean": "rimraf dist",
-  "obf": "javascript-obfuscator src --output dist --config obfuscator-config.json",
-  "copy:public": "cpx \"public/**\" dist/public",
-  "copy:views": "cpx \"src/views/**\" dist/views || true",
-  "copy:root": "cpx package.json dist",
-  "build": "npm run clean && npm run obf && npm run copy:public && npm run copy:views && npm run copy:root",
-  "start": "node app.js",
-  "start:dist": "node dist/app.js",
-  "prestart": "npm run build"
-}
-,
+    "clean": "npx rimraf dist",
+    "obf": "npx javascript-obfuscator src --output dist --config obfuscator-config.json",
+    "copy:public": "npx cpx \"public/**\" dist/public",
+    "copy:views": "npx cpx \"src/views/**\" dist/views || true",
+    "copy:root": "npx cpx package.json dist && npx cpx package-lock.json dist || true",
+    "install:prod": "npm ci --only=production --prefix dist",
+    "build": "npm run clean && npm run obf && npm run copy:public && npm run copy:views && npm run copy:root && npm run install:prod",
+    "start": "node app.js",
+    "start:dist": "node dist/app.js"
+  },
   "dependencies": {
-    "ejs": "^3.1.9",
     "express": "^4.19.2",
-    "mysql2": "^3.9.0"
+    "ejs": "^3.1.9",
+    "mysql2": "^3.0.0"
   },
   "devDependencies": {
-    "cpx": "^1.5.0",
-    "javascript-obfuscator": "^4.1.1",
-    "nodemon": "^3.1.0",
-    "rimraf": "^6.0.1"
+    "javascript-obfuscator": "^4.0.0",
+    "rimraf": "^5.0.0",
+    "cpx": "^1.5.0"
   }
 }
