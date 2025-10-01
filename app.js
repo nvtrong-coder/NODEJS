@@ -1,28 +1,11 @@
-const express = require('express');
-const path = require('path');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware đọc dữ liệu
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Public
-app.use(express.static(path.join(__dirname, 'public')));
-
-// View engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// Routes
-const userRoutes = require('./routes/userRoutes');
-app.use('/users', userRoutes);
-
-app.get('/', (req, res) => {
-  res.send("Trang chủ NodeJS + Express!");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server chạy trên cổng ${PORT}`);
-});
+// File này hosting sẽ chạy
+// Nó chỉ làm nhiệm vụ bootstrap (load dist hoặc src)
+// app.js (root)
+try {
+  require('./dist/app');
+} catch (err) {
+  console.error('Failed to load dist/app. Have you run npm run build?');
+  console.error(err);
+  // fallback: chạy src trực tiếp (chỉ dev local)
+  require('./src/app');
+}

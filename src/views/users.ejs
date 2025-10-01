@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danh sách Users</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Danh sách Users</h1>
+  <a href="/users/add">Thêm user</a>
+  <ul>
+    <% if (users.length === 0) { %>
+      <li>Chưa có user nào</li>
+    <% } else { %>
+      <% users.forEach(user => { %>
+        <li><%= user.name %> - <%= user.email %></li>
+      <% }) %>
+    <% } %>
+  </ul>
+</body>
+</html>
