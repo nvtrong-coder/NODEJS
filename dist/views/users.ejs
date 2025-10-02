@@ -12,7 +12,7 @@
       <li>Chưa có user nào</li>
     <% } else { %>
       <% users.forEach(user => { %>
-        <li><%= user.name %> - <%= user.email %></li>
+        <li><%= user.user_login %> - <%= user.user_email %></li>
       <% }) %>
     <% } %>
   </ul>
